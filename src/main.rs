@@ -11,7 +11,7 @@ use lib::CrateType;
 fn main() {
     let app = App::new("cargo crate-type")
         .bin_name("cargo")
-        .version("1.0")
+        .version("0.1.0")
         .setting(AppSettings::SubcommandRequiredElseHelp)
         .subcommand(
             SubCommand::with_name("crate-type")
