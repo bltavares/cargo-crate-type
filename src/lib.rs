@@ -1,18 +1,20 @@
 extern crate toml_edit;
 
-use toml_edit::{value, Document};
+use self::toml_edit::{value, Array, Document};
 
-enum CrateType {
+pub enum CrateType {
     Static,
     Dynamic,
 }
 
-fn set_crate_type(manifest: &str, target: CrateType) -> String {
+pub fn set_crate_type(manifest: &str, target: CrateType) -> String {
     let mut doc = manifest.parse::<Document>().expect("Cargo.toml malformed");
-    doc["lib"]["crate-type"] = match target {
-        CrateType::Static => value("staticlib"),
-        CrateType::Dynamic => value("cdylib"),
+    let mut array = Array::default();
+    match target {
+        CrateType::Static => array.push("staticlib"),
+        CrateType::Dynamic => array.push("cdylib"),
     };
+    doc["lib"]["crate-type"] = value(array);
     return doc.to_string();
 }
 
@@ -32,7 +34,7 @@ authors = ["Example <example@example.com>"]
 toml_edit = "0.1.3"
 "#;
 
-        let expected = r#"lib = {crate-type = "cdylib"}
+        let expected = r#"lib = {crate-type = ["cdylib"]}
 
 [package]
 name = "cargo-crate-type"
@@ -59,7 +61,7 @@ authors = ["Example <example@example.com>"]
 toml_edit = "0.1.3"
 "#;
 
-        let expected = r#"lib = {crate-type = "staticlib"}
+        let expected = r#"lib = {crate-type = ["staticlib"]}
 
 [package]
 name = "cargo-crate-type"
@@ -86,7 +88,7 @@ authors = ["Example <example@example.com>"]
 toml_edit = "0.1.3"
 
 [lib]
-crate-type = "lib"
+crate-type = ["lib"]
 "#;
 
         let expected = r#"
@@ -99,7 +101,7 @@ authors = ["Example <example@example.com>"]
 toml_edit = "0.1.3"
 
 [lib]
-crate-type = "staticlib"
+crate-type = ["staticlib"]
 "#;
 
         let new_manifest = set_crate_type(manifest, CrateType::Static);

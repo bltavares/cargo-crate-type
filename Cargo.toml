@@ -5,3 +5,4 @@ authors = ["Bruno Tavares <connect+github@bltavares.com>"]
 
 [dependencies]
 toml_edit = "0.1.3"
+clap = "2.32.0"
