@@ -4,3 +4,4 @@ version = "0.1.0"
 authors = ["Bruno Tavares <connect+github@bltavares.com>"]
 
 [dependencies]
+toml_edit = "0.1.3"
