@@ -2,6 +2,7 @@ extern crate toml_edit;
 
 use self::toml_edit::{value, Array, Document};
 
+#[derive(Copy, Clone)]
 pub enum CrateType {
     Static,
     Dynamic,
@@ -15,7 +16,7 @@ pub fn set_crate_type(manifest: &str, target: CrateType) -> String {
         CrateType::Dynamic => array.push("cdylib"),
     };
     doc["lib"]["crate-type"] = value(array);
-    return doc.to_string();
+    doc.to_string()
 }
 
 #[cfg(test)]
