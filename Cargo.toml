@@ -1,7 +1,24 @@
 [package]
 name = "cargo-crate-type"
+description = "Edits the lib crate type to help building cross-platform libs, by modifying Cargo.toml"
 version = "0.1.0"
 authors = ["Bruno Tavares <connect+github@bltavares.com>"]
+documentation = "https://github.com/bltavares/cargo-crate-type/blob/master/README.md"
+homepage = "https://github.com/bltavares/cargo-crate-type"
+repository = "https://github.com/bltavares/cargo-crate-type"
+readme = "README.md"
+license = "MIT OR Apache-2.0"
+categories = [
+    "development-tools",
+    "development-tools::cargo-plugins",
+]
+keywords = [
+    "cargo",
+    "cargo-subcommand",
+    "cli",
+    "dependencies",
+    "crates",
+]
 
 [dependencies]
 toml_edit = "0.1.3"

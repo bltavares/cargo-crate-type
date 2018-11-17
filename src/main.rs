@@ -15,7 +15,7 @@ fn main() {
         .setting(AppSettings::SubcommandRequiredElseHelp)
         .subcommand(
             SubCommand::with_name("crate-type")
-                .about("Edits the lib crate type to help building cross-platform libs")
+                .about("Edits the lib crate type to help building cross-platform libs, by modifying Cargo.toml")
                 .arg(
                     Arg::with_name("target")
                         .required(true)
